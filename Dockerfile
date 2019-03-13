@@ -186,6 +186,10 @@ RUN set -ex \
   && ln -s /opt/yarn-v$YARN_VERSION/bin/yarnpkg /usr/local/bin/yarnpkg \
   && rm yarn-v$YARN_VERSION.tar.gz.asc yarn-v$YARN_VERSION.tar.gz
 
+### INSTALL AWSCLI
+RUN apt-get update && \
+    apt-get install -y awscli
+
 ### INSTALL WATCHMAN ###
 RUN apt-get install -y \
     libssl-dev autoconf automake libtool pkg-config
