@@ -10,15 +10,6 @@ RUN echo 'APT::Get::Assume-Yes "true";' > /etc/apt/apt.conf.d/90oval \
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Debian Jessie is EOL'd and original repos don't work.
-# Switch to the archive mirror until we can get people to
-# switch to Stretch.
-RUN if grep -q Debian /etc/os-release && grep -q jessie /etc/os-release; then \
-	rm /etc/apt/sources.list \
-    && echo "deb http://archive.debian.org/debian/ jessie main" >> /etc/apt/sources.list \
-    && echo "deb http://security.debian.org/debian-security jessie/updates main" >> /etc/apt/sources.list \
-	; fi
-
 # Make sure PATH includes ~/.local/bin
 # https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=839155
 # This only works for root. The oval user is done near the end of this Dockerfile
