@@ -1,6 +1,6 @@
 FROM openjdk:11-jdk-slim
 
-LABEL maintainer="Fabio Todaro <ft@ovalmoney.com>"
+LABEL maintainer="Fabio Todaro <ft@ovalmoney.com>, Luca Morelli <luca.morelli@ovalmoney.com>"
 
 # Initial Command run as `root`.
 
@@ -142,7 +142,7 @@ RUN sdkmanager \
   "build-tools;30.0.2"
 
 # API_LEVEL string gets replaced by m4
-RUN sdkmanager "platforms;android-29"
+RUN sdkmanager "platforms;android-30"
 
 # Verify the oval user exists before proceeding
 RUN whoami
