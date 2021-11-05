@@ -53,7 +53,7 @@ ENV HOME /home/oval
 
 RUN sudo apt-get update -qqy && sudo apt-get install -qqy \
         python-dev \
-        python-pip \
+        python3-pip \
         python-setuptools \
         apt-transport-https \
         lsb-release && \
