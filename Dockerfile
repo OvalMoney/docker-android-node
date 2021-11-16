@@ -174,7 +174,7 @@ RUN set -o errexit -o nounset \
 RUN groupadd --gid 1000 node \
   && useradd --uid 1000 --gid node --shell /bin/bash --create-home node
 
-ENV NODE_VERSION 12.22.7
+ENV NODE_VERSION 16.11.1
 
 RUN ARCH= && dpkgArch="$(dpkg --print-architecture)" \
   && case "${dpkgArch##*-}" in \
@@ -218,7 +218,7 @@ RUN ARCH= && dpkgArch="$(dpkg --print-architecture)" \
   && npm --version
 
 ### INSTALL YARN ###
-ENV YARN_VERSION 1.22.10
+ENV YARN_VERSION 1.22.15
 
 RUN set -ex \
   && for key in \
@@ -226,7 +226,8 @@ RUN set -ex \
   ; do \
     gpg --batch --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys "$key" || \
     gpg --batch --keyserver hkp://ipv4.pool.sks-keyservers.net --recv-keys "$key" || \
-    gpg --batch --keyserver hkp://pgp.mit.edu:80 --recv-keys "$key" ; \
+    gpg --batch --keyserver hkp://pgp.mit.edu:80 --recv-keys "$key" || \
+    gpg --batch --keyserver hkps://keys.openpgp.org --recv-keys "$key" ; \
   done \
   && curl -fsSLO --compressed "https://yarnpkg.com/downloads/$YARN_VERSION/yarn-v$YARN_VERSION.tar.gz" \
   && curl -fsSLO --compressed "https://yarnpkg.com/downloads/$YARN_VERSION/yarn-v$YARN_VERSION.tar.gz.asc" \
