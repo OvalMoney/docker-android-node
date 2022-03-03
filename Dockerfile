@@ -139,10 +139,12 @@ RUN sdkmanager \
   "build-tools;29.0.3" \
   "build-tools;30.0.0" \
   "build-tools;30.0.1" \
-  "build-tools;30.0.2"
+  "build-tools;30.0.2" \
+  "build-tools;30.0.3" \
+  "build-tools;32.0.0"
 
 # API_LEVEL string gets replaced by m4
-RUN sdkmanager "platforms;android-30"
+RUN sdkmanager "platforms;android-31"
 
 # Verify the oval user exists before proceeding
 RUN whoami
@@ -174,7 +176,7 @@ RUN set -o errexit -o nounset \
 RUN groupadd --gid 1000 node \
   && useradd --uid 1000 --gid node --shell /bin/bash --create-home node
 
-ENV NODE_VERSION 16.13.0
+ENV NODE_VERSION 16.14.0
 
 RUN ARCH= && dpkgArch="$(dpkg --print-architecture)" \
   && case "${dpkgArch##*-}" in \
@@ -218,7 +220,7 @@ RUN ARCH= && dpkgArch="$(dpkg --print-architecture)" \
   && npm --version
 
 ### INSTALL YARN ###
-ENV YARN_VERSION 1.22.15
+ENV YARN_VERSION 1.22.17
 
 RUN set -ex \
   && for key in \
