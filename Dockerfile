@@ -86,7 +86,7 @@ RUN sudo apt-get update && \
     sudo rm -rf /var/lib/apt/lists/*
 
 # Install Ruby
-ENV RUBY_VERSION 2.6.3
+ENV RUBY_VERSION 2.7.4
 RUN sudo apt-get update && \
     cd /tmp && wget -O ruby-install-0.7.1.tar.gz https://github.com/postmodern/ruby-install/archive/v0.7.1.tar.gz && \
     tar -xzvf ruby-install-0.7.1.tar.gz && \
